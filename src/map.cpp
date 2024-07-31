@@ -16,9 +16,53 @@ static const int map[MAP_HEIGHT][MAP_WIDTH]={
     {1,1,1,1,1,1,1,1,1,1}
 };
 
-static const double HEX_SIZE=1.0;
-// static const double HEX_SIZE=1.0/MAP_WIDTH;
+static const double HEX_SIZE=FIELD_SIZE/10;
 
+void drawRectangularPrism(float width, float height, float depth) {
+    float w = width / 2.0f;
+    float h = height / 2.0f;
+    float d = depth / 2.0f;
+
+    glBegin(GL_QUADS);
+
+    // Front face
+    glVertex3f(-w, -h,  d);
+    glVertex3f( w, -h,  d);
+    glVertex3f( w,  h,  d);
+    glVertex3f(-w,  h,  d);
+
+    // Back face
+    glVertex3f(-w, -h, -d);
+    glVertex3f(-w,  h, -d);
+    glVertex3f( w,  h, -d);
+    glVertex3f( w, -h, -d);
+
+    // Left face
+    glVertex3f(-w, -h, -d);
+    glVertex3f(-w, -h,  d);
+    glVertex3f(-w,  h,  d);
+    glVertex3f(-w,  h, -d);
+
+    // Right face
+    glVertex3f(w, -h, -d);
+    glVertex3f(w,  h, -d);
+    glVertex3f(w,  h,  d);
+    glVertex3f(w, -h,  d);
+
+    // Top face
+    glVertex3f(-w,  h, -d);
+    glVertex3f(-w,  h,  d);
+    glVertex3f( w,  h,  d);
+    glVertex3f( w,  h, -d);
+
+    // Bottom face
+    glVertex3f(-w, -h, -d);
+    glVertex3f( w, -h, -d);
+    glVertex3f( w, -h,  d);
+    glVertex3f(-w, -h,  d);
+
+    glEnd();
+}
 
 void draw_map(void)
 {
@@ -36,7 +80,7 @@ void draw_map(void)
                     //壁
                     glPushMatrix();{
                         glTranslatef(0,HEX_SIZE,0); //上に移動
-                        glutSolidCube(HEX_SIZE);
+                        drawRectangularPrism(HEX_SIZE / 4, HEX_SIZE, HEX_SIZE);
                     }glPopMatrix();
                 }
             }glPopMatrix();
