@@ -135,6 +135,19 @@ void DrawAxis() {
 
 };
 
+void	custom_itoa(int n, char *str)
+{
+	int	i = 0;
+	char	tmp;
+
+	tmp = n / 10;
+	if (tmp)
+		str[i++] = tmp + '0';
+	n = n % 10;
+	if (n)
+		str[i] = n + '0';
+}
+
 void display1(int x, int y, int w, int h) {
 
 	glViewport(x, y, w, h); //ビューポート変換
@@ -162,18 +175,29 @@ void display1(int x, int y, int w, int h) {
 		// 自機が生きていたら自機と敵を描画する
 		DrawMyShip(); // 自機の描画
 	}
+
+	int	kill_count = 0;
 	for (int i = 0; i < ship_count; i++)
 	{
 		if (ship[i + 1].Life < 1) {
+			kill_count++;
 			// 文字列の描画
 			glPushMatrix();
 			GLfloat matString[] = { 0.8, 0.0, 0.2, 1.0 }; //環境光と拡散光の反射率をまとめて設定
 			glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, matString);
 			glRasterPos3f(-1.0f + ship[0].x, 5.0f, 0.0f + ship[0].z);
-			char *str = "You Win";
-			while (*str) {
-				glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, *str);
-				++str;
+			if (kill_count == ship_count)
+			{
+				char *str = "You Win";
+				while (*str) {
+					glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, *str);
+					++str;
+				}
+			} else {
+				char *str1 = "You Killed";
+				char *str2 = (kill_count);
+				char *str3 = "enemies!";
+
 			}
 			glPopMatrix();
 		}
