@@ -6,7 +6,7 @@
 #define _USE_MATH_DEFINES
 #include<math.h>
 
-#include <GLUT/glut.h>
+#include <GL/glut.h>
 
 #define FALSE 0
 #define TRUE  1

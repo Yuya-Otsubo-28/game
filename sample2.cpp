@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
-#include <GLUT/glut.h>
+#include <GL/glut.h>
 
 //1.ライフの減りに応じて効果を付ける
 //2.自機の見た目を変更する
