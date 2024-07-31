@@ -41,10 +41,11 @@ void timer(int t)             // 指定時間後に呼び出される関数（Ti
 	{
 		if (!(ship[i].Life))
 			continue ;
-		if (ship[i].theta + 1 > 360)
-			ship[i].theta = ship[i].theta + 1 - 360;
+		int tmp = rand() % 10;
+		if (ship[i].theta + tmp > 360)
+			ship[i].theta = ship[i].theta + tmp - 360;
 		else
-			ship[i].theta++;
+			ship[i].theta += tmp;
 		for (int j = 0; j < MAX_SHOT; j++) {
 			  if (ship[i].myShot[j].isAlive == 0) {
 				  ship[i].myShot[j].isAlive = 1;
