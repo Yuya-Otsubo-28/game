@@ -3,6 +3,7 @@
 
 # include <GL/glut.h>
 # include <bits/stdc++.h>
+# include <stdlib.h>
 
 # define GL_SILENCE_DEPRECATION
 #define WINDOW_WIDTH 640

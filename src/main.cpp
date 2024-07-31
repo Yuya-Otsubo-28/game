@@ -86,7 +86,7 @@ int main(int argc, char *argv[])
 			player_init(&ship[j]);
 		else
 			enemy_init(&ship[j]);
-		ship[j].theta = rand() % 360;	// 自機の初期角度
+		ship[j].theta = 0;	// 自機の初期角度
 		ship[j].Life = DEFAULT_LIFE;	// 自機は生きている
 
 	// 弾の構造体データを初期化(弾はZ軸方向に毎フレーム-1.0移動する)
