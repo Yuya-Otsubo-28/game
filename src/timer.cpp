@@ -63,11 +63,8 @@ void timer(int t)             // 指定時間後に呼び出される関数（Ti
 				ship[j].myShot[i].isAlive = 0; //画面外(領域外)に出たら弾を消す
 			if (abs((int)ship[j].myShot[i].z) > FIELD_SIZE * 2) //画面外(領域外)判定
 				ship[j].myShot[i].isAlive = 0; //画面外(領域外)に出たら弾を消す
-			if (abs((int)ship[j].myShot[i].x) < 10 && abs((int)ship[j].myShot[i].z < 10))
-			{
-				if (stage[abs((int)ship[j].myShot[i].z)][abs((int)ship[j].myShot[i].x)] == 1)
-					ship[j].myShot[i].isAlive = 0;
-			}
+			if (stage[abs((int)(ship[j].myShot[i].z / (FIELD_SIZE/7)))][abs((int)(ship[j].myShot[i].x / (FIELD_SIZE/7)))] == 1)
+				ship[j].myShot[i].isAlive = 0;
 		}
 	}
 
