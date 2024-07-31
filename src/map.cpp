@@ -52,9 +52,8 @@ void drawRectangularPrism(float width, float height, float depth) {
 
 void draw_map(void)
 {
-    //図形の色 (白)
     static const GLfloat white[] = { 0.9, 0.9, 0.9, 1.0 };
-	static const GLfloat blue[] = {0.0, 0.9, 0.0, 1.0};
+	static const GLfloat blue[] = {0.0, 0.5, 0.9, 1.0};
     
     for(int r=0;r<MAP_HEIGHT;++r){
         for(int c=0;c<MAP_WIDTH;++c){
@@ -69,8 +68,6 @@ void draw_map(void)
 					{
 						
 						glPushMatrix();{
-							// glTranslatef(HEX_SIZE, 0.0f, 0.0f);
-							// glColor3f(1.0f, 1.0f, 1.0f);
                     		glTranslatef(0,HEX_SIZE,0); //上に移動
                         	glutSolidCube(HEX_SIZE * 2);
                     	}glPopMatrix();
