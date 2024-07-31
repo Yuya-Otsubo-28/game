@@ -13,7 +13,10 @@
 #define SHIP_NUM 2
 #define DEFAULT_LIFE 1
 
-#define MAX_SHOT  3 // 同時に撃てる弾の最大数
+#define MAP_WIDTH  10
+#define MAP_HEIGHT 10
+
+#define MAX_SHOT  100 // 同時に撃てる弾の最大数
 
 typedef struct _MyShot{
 	int isAlive; // 自機の弾が生きてるか？
@@ -49,6 +52,8 @@ void specialKeyUp(int key, int x, int y);
 
 void timer(int t);
 
-void setGluLookAt(int shipid =1);
+void setGluLookAt(int shipid);
+
+void draw_map(void);
 
 #endif

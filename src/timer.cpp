@@ -16,6 +16,7 @@ extern float MoveX;
 extern float MoveZ;
 extern float Scale;
 extern MyShip ship[SHIP_NUM];
+extern int stage[MAP_HEIGHT][MAP_WIDTH];
 
 void timer(int t)             // 指定時間後に呼び出される関数（Timerコールバック関数）
 {
@@ -62,6 +63,8 @@ void timer(int t)             // 指定時間後に呼び出される関数（Ti
 				ship[j].myShot[i].isAlive = 0; //画面外(領域外)に出たら弾を消す
 			if (abs((int)ship[j].myShot[i].z) > FIELD_SIZE * 2) //画面外(領域外)判定
 				ship[j].myShot[i].isAlive = 0; //画面外(領域外)に出たら弾を消す
+			if (stage[abs((int)(ship[j].myShot[i].z / (FIELD_SIZE/7)))][abs((int)(ship[j].myShot[i].x / (FIELD_SIZE/7)))] == 1)
+				ship[j].myShot[i].isAlive = 0;
 		}
 	}
 

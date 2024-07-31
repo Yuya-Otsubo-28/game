@@ -1,6 +1,21 @@
 #include "game.h"
 #include "g_var.h"
 
+void	player_init(MyShip *ship)
+{
+	for (int i = 0; i < MAP_HEIGHT; i++)
+	{
+		for (int j = 0; j < MAP_WIDTH; j++)
+		{
+			if (stage[i][j] == 2)
+			{
+				ship->x = j * FIELD_SIZE/7 + 2;
+				ship->z = i * FIELD_SIZE/7 + 2;
+			}
+		}
+	}
+}
+
 int main(int argc, char *argv[])
 {
 	glutInit(&argc, argv);          // GLUT初期化
@@ -25,8 +40,7 @@ int main(int argc, char *argv[])
 
 	// 自機の構造体データを初期化
 	for (int j = 0; j < SHIP_NUM; j++) {
-		ship[j].x = rand()% 50;	// 自機の初期位置(X座標)
-		ship[j].z = rand() % 50;	// 自機の初期位置(Z座標)
+		player_init(&ship[j]);
 		ship[j].theta = rand() % 360;	// 自機の初期角度
 		ship[j].Life = DEFAULT_LIFE;	// 自機は生きている
 
