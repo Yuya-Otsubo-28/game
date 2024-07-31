@@ -17,6 +17,7 @@ extern float MoveZ;
 extern float Scale;
 extern MyShip ship[SHIP_NUM];
 extern int stage[MAP_HEIGHT][MAP_WIDTH];
+extern int ship_count;
 
 void timer(int t)             // 指定時間後に呼び出される関数（Timerコールバック関数）
 {
@@ -69,19 +70,22 @@ void timer(int t)             // 指定時間後に呼び出される関数（Ti
 	}
 
 	//　弾と自機の当たり判定
-	if (ship[0].Life > 0 && ship[1].Life > 0) {
-		for (int j = 0; j < MAX_SHOT; j++) {
-			// For P1 弾と敵の距離が一定値以内の場合に当たりと判定
-			if (((ship[1].myShot[j].x - ship[0].x)*(ship[1].myShot[j].x - ship[0].x) +
-				(ship[1].myShot[j].z - ship[0].z)*(ship[1].myShot[j].z - ship[0].z)) < 2.0 && ship[1].myShot[j].isAlive) {
-				ship[0].Life--;//自機を消す
-				ship[1].myShot[j].isAlive = 0;//自機を消す
-			}
-			// For P2 弾と敵の距離が一定値以内の場合に当たりと判定
-			if (((ship[0].myShot[j].x - ship[1].x)*(ship[0].myShot[j].x - ship[1].x) +
-				(ship[0].myShot[j].z - ship[1].z)*(ship[0].myShot[j].z - ship[1].z)) < 2.0 && ship[0].myShot[j].isAlive) {
-				ship[1].Life--;//自機を消す
-				ship[0].myShot[j].isAlive = 0;//自機を消す
+	if (ship[0].Life > 0) {
+		for (int i = 1; i < ship_count + 1; i++)
+		{
+			for (int j = 0; j < MAX_SHOT; j++) {
+				// For P1 弾と敵の距離が一定値以内の場合に当たりと判定
+				if (((ship[i].myShot[j].x - ship[0].x)*(ship[i].myShot[j].x - ship[0].x) +
+					(ship[i].myShot[j].z - ship[0].z)*(ship[i].myShot[j].z - ship[0].z)) < 2.0 && ship[i].myShot[j].isAlive) {
+					ship[0].Life--;//自機を消す
+					ship[i].myShot[j].isAlive = 0;//自機を消す
+				}
+				// For P2 弾と敵の距離が一定値以内の場合に当たりと判定
+				if (((ship[0].myShot[j].x - ship[i].x)*(ship[0].myShot[j].x - ship[i].x) +
+					(ship[0].myShot[j].z - ship[i].z)*(ship[0].myShot[j].z - ship[i].z)) < 2.0 && ship[0].myShot[j].isAlive) {
+					ship[i].Life--;//自機を消す
+					ship[0].myShot[j].isAlive = 0;//自機を消す
+				}
 			}
 		}
 	}
