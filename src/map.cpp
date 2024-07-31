@@ -16,7 +16,7 @@ static const int map[MAP_HEIGHT][MAP_WIDTH]={
     {1,1,1,1,1,1,1,1,1,1}
 };
 
-static const double HEX_SIZE=FIELD_SIZE/10;
+static const double HEX_SIZE=FIELD_SIZE/7;
 
 void drawRectangularPrism(float width, float height, float depth) {
     float w = width / 2.0f;
@@ -78,10 +78,29 @@ void draw_map(void)
                 glutSolidCube(HEX_SIZE);
                 if(map[r][c]==1){
                     //壁
-                    glPushMatrix();{
-                        glTranslatef(0,HEX_SIZE,0); //上に移動
-                        drawRectangularPrism(HEX_SIZE / 4, HEX_SIZE, HEX_SIZE);
-                    }glPopMatrix();
+					if ((r == 0 && (c == 0 || c == 9)) || (r == 9 && (c == 0 || c == 9)))
+					{
+						glPushMatrix();{
+                    		glTranslatef(0,HEX_SIZE,0); //上に移動
+                        	glutSolidCube(HEX_SIZE * 2);
+                    	}glPopMatrix();
+					} else if (r == 0 || r == 9)
+					{
+                    	glPushMatrix();{
+                        	glTranslatef(0,HEX_SIZE,0); //上に移動
+                        	drawRectangularPrism(HEX_SIZE, HEX_SIZE * 2, HEX_SIZE / 6);
+                    	}glPopMatrix();
+					} else if (c == 0 || c == 9) {
+						glPushMatrix();{
+                        	glTranslatef(0,HEX_SIZE,0); //上に移動
+                        	drawRectangularPrism(HEX_SIZE / 6, HEX_SIZE * 2, HEX_SIZE);
+                    	}glPopMatrix();
+					} else {
+						glPushMatrix();{
+                        	glTranslatef(0,HEX_SIZE,0); //上に移動
+                        	drawRectangularPrism(HEX_SIZE / 3, HEX_SIZE / 2, HEX_SIZE / 3);
+                    	}glPopMatrix();
+					}
                 }
             }glPopMatrix();
         }}
