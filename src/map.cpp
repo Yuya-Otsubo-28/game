@@ -67,6 +67,8 @@ void draw_map(void)
 					if ((r == 0 && (c == 0 || c == 9)) || (r == 9 && (c == 0 || c == 9)))
 					{
 						glPushMatrix();{
+							// glTranslatef(HEX_SIZE, 0.0f, 0.0f);
+							// glColor3f(1.0f, 1.0f, 1.0f);
                     		glTranslatef(0,HEX_SIZE,0); //上に移動
                         	glutSolidCube(HEX_SIZE * 2);
                     	}glPopMatrix();
@@ -83,8 +85,8 @@ void draw_map(void)
                     	}glPopMatrix();
 					} else {
 						glPushMatrix();{
-                        	glTranslatef(0,HEX_SIZE,0); //上に移動
-                        	drawRectangularPrism(HEX_SIZE, HEX_SIZE / 10, HEX_SIZE);
+                        	// glTranslatef(0,HEX_SIZE,0); //上に移動
+                        	drawRectangularPrism(HEX_SIZE, HEX_SIZE * 2, HEX_SIZE);
                     	}glPopMatrix();
 					}
                 }

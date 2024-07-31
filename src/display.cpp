@@ -28,7 +28,7 @@ void DrawSurface(void) { // 地面を描画
 
 	glNormal3f(0.0, 1.0, 0.0); //法線方向の設定
 
-	glTranslatef(0.0, -0.5, 0.0);
+	glTranslatef(0.0, 0.0, 0.0);
 	glScalef(FIELD_SIZE, FIELD_SIZE, FIELD_SIZE);
 	glBegin(GL_QUADS);
 	glVertex3f( 1.0f, 0.0f,  1.0f);
