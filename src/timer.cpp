@@ -80,11 +80,11 @@ void timer(int t)             // 指定時間後に呼び出される関数（Ti
 					ship[0].Life--;//自機を消す
 					ship[i].myShot[j].isAlive = 0;//自機を消す
 				}
-				// For P2 弾と敵の距離が一定値以内の場合に当たりと判定
-				if (((ship[0].myShot[j].x - ship[i].x)*(ship[0].myShot[j].x - ship[i].x) +
+				// For 敵の球と自分の距離が一定値以内の場合に当たりと判定
+				if (ship[i].Life && ((ship[0].myShot[j].x - ship[i].x)*(ship[0].myShot[j].x - ship[i].x) +
 					(ship[0].myShot[j].z - ship[i].z)*(ship[0].myShot[j].z - ship[i].z)) < 2.0 && ship[0].myShot[j].isAlive) {
-					ship[i].Life--;//自機を消す
-					ship[0].myShot[j].isAlive = 0;//自機を消す
+					ship[i].Life--;//敵機を消す
+					ship[0].myShot[j].isAlive = 0;
 				}
 			}
 		}
