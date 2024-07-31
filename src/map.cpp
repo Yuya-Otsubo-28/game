@@ -1,20 +1,6 @@
 #include "game.h"
 
-#define MAP_WIDTH  10
-#define MAP_HEIGHT 10
-
-static const int map[MAP_HEIGHT][MAP_WIDTH]={
-    {1,1,1,1,1,1,1,1,1,1},
-    {1,2,1,0,1,0,1,0,0,1},
-    {1,0,1,0,1,0,1,1,0,1},
-    {1,0,1,0,1,0,0,0,0,1},
-    {1,0,1,0,1,0,0,0,0,1},
-    {1,0,1,0,1,0,0,0,0,1},
-    {1,0,1,0,1,0,1,1,0,1},
-    {1,0,1,0,1,0,1,0,0,1},
-    {1,0,0,0,0,0,1,0,0,1},
-    {1,1,1,1,1,1,1,1,1,1}
-};
+extern int stage[MAP_HEIGHT][MAP_WIDTH];
 
 static const double HEX_SIZE=FIELD_SIZE/7;
 
@@ -76,7 +62,7 @@ void draw_map(void)
                 //床
                 glTranslatef((c+0.5)*HEX_SIZE,-HEX_SIZE,(r+0.5)*HEX_SIZE);
                 glutSolidCube(HEX_SIZE);
-                if(map[r][c]==1){
+                if(stage[r][c]==1){
                     //壁
 					if ((r == 0 && (c == 0 || c == 9)) || (r == 9 && (c == 0 || c == 9)))
 					{
