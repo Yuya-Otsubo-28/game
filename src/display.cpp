@@ -16,6 +16,7 @@ extern float MoveX;
 extern float MoveZ;
 extern float Scale;
 extern MyShip ship[SHIP_NUM];
+extern int ship_count;
 
 void DrawSurface(void) { // 地面を描画
 	glPushMatrix();
@@ -72,7 +73,7 @@ void DrawMyShip(void)
 }
 
 // 自機と弾の描画2
-void DrawMyShip2(void)
+void DrawMyShip2(int j)
 {
 	glPushMatrix();
 	GLfloat mat0ambi[] = { 0.329412,  0.223529, 0.027451, 1.0 };//真鍮
@@ -85,16 +86,16 @@ void DrawMyShip2(void)
 	glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, mat0shine);
 
 	//自機の描画
-	glTranslatef(ship[1].x, 0.0, ship[1].z); //X軸方向にMoveX，Y軸方向にMoveYだけ移動
-	glRotatef(ship[1].theta - 90, 0.0, 1.0, 0.0);  //Y軸周りに90度回転
+	glTranslatef(ship[j].x, 0.0, ship[j].z); //X軸方向にMoveX，Y軸方向にMoveYだけ移動
+	glRotatef(ship[j].theta - 90, 0.0, 1.0, 0.0);  //Y軸周りに90度回転
 	glutSolidTeapot(1.0);            //自機はティーポット(笑)
 	glPopMatrix();
 
 	//自機の弾の描画
 	for (int i = 0; i<MAX_SHOT; i++) {
-		if (ship[1].myShot[i].isAlive) {
+		if (ship[j].myShot[i].isAlive) {
 			glPushMatrix();
-			glTranslatef(ship[1].myShot[i].x, 0.0, ship[1].myShot[i].z); //現在の弾の位置
+			glTranslatef(ship[j].myShot[i].x, 0.0, ship[j].myShot[i].z); //現在の弾の位置
 			glutSolidSphere(0.3, 10, 10);            //弾は球体
 			glPopMatrix();
 		}
@@ -160,23 +161,25 @@ void display1(int x, int y, int w, int h) {
 	else {
 		// 自機が生きていたら自機と敵を描画する
 		DrawMyShip(); // 自機の描画
-		
 	}
-	if (ship[1].Life < 1) {
-		// 文字列の描画
-		glPushMatrix();
-		GLfloat matString[] = { 0.8, 0.0, 0.2, 1.0 }; //環境光と拡散光の反射率をまとめて設定
-		glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, matString);
-		glRasterPos3f(-1.0f + ship[0].x, 5.0f, 0.0f + ship[0].z);
-		char *str = "You Win";
-		while (*str) {
-			glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, *str);
-			++str;
+	for (int i = 0; i < ship_count; i++)
+	{
+		if (ship[i + 1].Life < 1) {
+			// 文字列の描画
+			glPushMatrix();
+			GLfloat matString[] = { 0.8, 0.0, 0.2, 1.0 }; //環境光と拡散光の反射率をまとめて設定
+			glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, matString);
+			glRasterPos3f(-1.0f + ship[0].x, 5.0f, 0.0f + ship[0].z);
+			char *str = "You Win";
+			while (*str) {
+				glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, *str);
+				++str;
+			}
+			glPopMatrix();
 		}
-		glPopMatrix();
-	}
-	else {
-		DrawMyShip2();	  //DrawEnemy();  // 敵の描画
+		else {
+			DrawMyShip2(i + 1);	  //DrawEnemy();  // 敵の描画
+		}
 	}
 	// 座標軸の描画
 	DrawAxis();

@@ -1,6 +1,21 @@
 #include "game.h"
 #include "g_var.h"
 
+int	count_ship(void)
+{
+	int	count = 0;
+
+	for (int i = 0; i < MAP_HEIGHT; i++)
+	{
+		for (int j = 0; j < MAP_WIDTH; j++)
+		{
+			if (stage[i][j] == 3)
+				count++;
+		}
+	}
+	return (count);
+}
+
 void	player_init(MyShip *ship)
 {
 	for (int i = 0; i < MAP_HEIGHT; i++)
@@ -11,6 +26,30 @@ void	player_init(MyShip *ship)
 			{
 				ship->x = j * FIELD_SIZE/7 + 2;
 				ship->z = i * FIELD_SIZE/7 + 2;
+			}
+		}
+	}
+}
+
+void	enemy_init(MyShip *ship)
+{
+	static int	store_count = 1;
+	int			count = 0;
+
+	for (int i = 0; i < MAP_HEIGHT; i++)
+	{
+		for (int j = 0; j < MAP_WIDTH; j++)
+		{
+			if (stage[i][j] == 3)
+			{
+				count++;
+				if (count == store_count)
+				{
+					ship->x = j * FIELD_SIZE/7 + 2;
+					ship->z = i * FIELD_SIZE/7 + 2;
+					store_count++;
+					return ;
+				}
 			}
 		}
 	}
@@ -36,11 +75,17 @@ int main(int argc, char *argv[])
 
 	//ランドの初期化
 	srand(time(NULL));
+
+	ship_count = count_ship();
+	printf("ship_cout : %d\n", ship_count);
 	
 
 	// 自機の構造体データを初期化
-	for (int j = 0; j < SHIP_NUM; j++) {
-		player_init(&ship[j]);
+	for (int j = 0; j < ship_count + 1; j++) {
+		if (!j)
+			player_init(&ship[j]);
+		else
+			enemy_init(&ship[j]);
 		ship[j].theta = rand() % 360;	// 自機の初期角度
 		ship[j].Life = DEFAULT_LIFE;	// 自機は生きている
 
@@ -51,7 +96,6 @@ int main(int argc, char *argv[])
 			ship[j].myShot[i].z = ship[j].z;		// 弾の初期位置(X座標)
 			ship[j].myShot[i].vx = 0;	// 弾の基本速度(X座標)
 			ship[j].myShot[i].vz = -1.0; // 弾の基本速度(X座標)
-
 		}
 	}
 	

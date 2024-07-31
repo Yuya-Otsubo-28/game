@@ -22,12 +22,12 @@ void timer(int t)             // 指定時間後に呼び出される関数（Ti
 {
 	// 矢印キーを押し続けている間は自機を移動
 	if (KeyUpON == 1) { 
-		ship[0].z += 0.1*cos(ship[0].theta /180.0*PI);
-		ship[0].x += 0.1*sin(ship[0].theta / 180.0*PI);
+		ship[0].z += 0.2*cos(ship[0].theta /180.0*PI);
+		ship[0].x += 0.2*sin(ship[0].theta / 180.0*PI);
 	}
 	if (KeyDownON == 1) {
-		ship[0].z -= 0.1*cos(ship[0].theta / 180.0*PI);
-		ship[0].x -= 0.1*sin(ship[0].theta / 180.0*PI);
+		ship[0].z -= 0.2*cos(ship[0].theta / 180.0*PI);
+		ship[0].x -= 0.2*sin(ship[0].theta / 180.0*PI);
 	}
 	if (KeyLeftON == 1) {
 		ship[0].theta += 1;
