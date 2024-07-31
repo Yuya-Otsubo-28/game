@@ -10,7 +10,7 @@
 
 #define PI 3.1415926535
 #define FIELD_SIZE 50.0f
-#define SHIP_NUM 2
+#define SHIP_NUM 50
 #define DEFAULT_LIFE 1
 
 #define MAP_WIDTH  10

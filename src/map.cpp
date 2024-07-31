@@ -52,12 +52,12 @@ void drawRectangularPrism(float width, float height, float depth) {
 
 void draw_map(void)
 {
-    //図形の色 (白)
     static const GLfloat white[] = { 0.9, 0.9, 0.9, 1.0 };
-    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, white);
+	static const GLfloat blue[] = {0.0, 0.5, 0.9, 1.0};
     
     for(int r=0;r<MAP_HEIGHT;++r){
         for(int c=0;c<MAP_WIDTH;++c){
+			glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, white);
             glPushMatrix();{
                 //床
                 glTranslatef((c+0.5)*HEX_SIZE,-HEX_SIZE,(r+0.5)*HEX_SIZE);
@@ -66,25 +66,29 @@ void draw_map(void)
                     //壁
 					if ((r == 0 && (c == 0 || c == 9)) || (r == 9 && (c == 0 || c == 9)))
 					{
+						
 						glPushMatrix();{
                     		glTranslatef(0,HEX_SIZE,0); //上に移動
                         	glutSolidCube(HEX_SIZE * 2);
                     	}glPopMatrix();
 					} else if (r == 0 || r == 9)
 					{
+						
                     	glPushMatrix();{
                         	glTranslatef(0,HEX_SIZE,0); //上に移動
                         	drawRectangularPrism(HEX_SIZE, HEX_SIZE * 2, HEX_SIZE / 6);
                     	}glPopMatrix();
 					} else if (c == 0 || c == 9) {
+						
 						glPushMatrix();{
                         	glTranslatef(0,HEX_SIZE,0); //上に移動
                         	drawRectangularPrism(HEX_SIZE / 6, HEX_SIZE * 2, HEX_SIZE);
                     	}glPopMatrix();
 					} else {
+						glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, blue);
 						glPushMatrix();{
-                        	glTranslatef(0,HEX_SIZE,0); //上に移動
-                        	drawRectangularPrism(HEX_SIZE, HEX_SIZE / 10, HEX_SIZE);
+							glColor3f(1.0f, 0.0f, 0.0f);
+                        	drawRectangularPrism(HEX_SIZE, HEX_SIZE * 2, HEX_SIZE);
                     	}glPopMatrix();
 					}
                 }
