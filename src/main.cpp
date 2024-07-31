@@ -1,5 +1,38 @@
 #include "game.h"
 
+// extern bool KeyUpON;
+// extern bool KeyDownON;
+// extern bool KeyLeftON;
+// extern bool KeyRightON;
+// extern int MouseX;
+// extern int MouseY;
+// extern float SpinX;
+// extern float SpinY;
+// extern float MoveX;
+// extern float MoveZ;
+// extern float Scale;
+// extern MyShip myShip;
+// extern Enemy enemy[MAX_ENEMY];
+
+
+// グローバル変数
+
+bool KeyUpON    = false;	// 矢印キーの状態フラグ
+bool KeyDownON  = false;	// 矢印キーの状態フラグ
+bool KeyLeftON  = false;	// 矢印キーの状態フラグ
+bool KeyRightON = false;	// 矢印キーの状態フラグ
+
+int MouseX = 0;	// マウスX座標
+int MouseY = 0;	// マウスY座標
+float SpinX = 0;	// X軸周りの回転量
+float SpinY = 0;	// Y軸周りの回転量
+
+float MoveX = 0;	// X軸方向の移動量
+float MoveZ = 0;	// Y軸方向の移動量
+float Scale = 1.0; // 拡大量
+MyShip myShip;
+Enemy enemy[MAX_ENEMY];
+
 int main(int argc, char *argv[])
 {
 	glutInit(&argc, argv);          // GLUT初期化

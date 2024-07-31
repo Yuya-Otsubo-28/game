@@ -1,8 +1,14 @@
 NAME = game
 CPPFLAGS = -Wall -Weffc++
-INCLUDES = -L ./include
+INCLUDES = -I./include/
 LIBS = -lglut -lGLU -lGL
-SRCS = ./src/main.cpp
+SRCS = ./src/main.cpp \
+		./src/display.cpp \
+		./src/keyboard.cpp \
+		./src/reshape.cpp \
+		./src/specialKey.cpp \
+		./src/timer.cpp \
+		./src/lightInit.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all : $(NAME)
