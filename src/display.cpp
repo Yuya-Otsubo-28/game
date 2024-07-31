@@ -140,7 +140,7 @@ void display1(int x, int y, int w, int h) {
 	setGluLookAt(1);
 
 	//地面
-	DrawSurface();
+	// DrawSurface();
 	draw_map();
 
 	// 自機が死んでいたらGame Overを表示する
