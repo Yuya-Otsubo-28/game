@@ -190,14 +190,14 @@ void display1(int x, int y, int w, int h) {
 		GLfloat matString[] = { 0.8, 0.0, 0.2, 1.0 }; //環境光と拡散光の反射率をまとめて設定
 		glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, matString);
 		glRasterPos3f(-1.0f + ship[0].x, 5.0f, 0.0f + ship[0].z);
-		if (ship[0].Life && kill_count == ship_count)
+		if (ship[0].Life > 0 && kill_count == ship_count)
 		{
 			char *str = "You Win";
 			while (*str) {
 				glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, *str);
 				++str;
 			}
-		} else if (ship[0].Life && kill_count) {
+		} else if (ship[0].Life > 0 && kill_count) {
 			char *str1 = "You Killed";
 			char str2[3] = {0, 0, 0};
 			custom_itoa(kill_count, str2);
