@@ -98,7 +98,7 @@ void draw_map(void)
 					} else {
 						glPushMatrix();{
                         	glTranslatef(0,HEX_SIZE,0); //上に移動
-                        	drawRectangularPrism(HEX_SIZE / 3, HEX_SIZE / 2, HEX_SIZE / 3);
+                        	drawRectangularPrism(HEX_SIZE, HEX_SIZE / 10, HEX_SIZE);
                     	}glPopMatrix();
 					}
                 }
