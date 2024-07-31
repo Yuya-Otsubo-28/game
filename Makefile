@@ -8,7 +8,8 @@ SRCS = ./src/main.cpp \
 		./src/reshape.cpp \
 		./src/specialKey.cpp \
 		./src/timer.cpp \
-		./src/lightInit.cpp
+		./src/lightInit.cpp \
+		./src/map.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all : $(NAME)

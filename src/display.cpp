@@ -133,13 +133,15 @@ void DrawAxis() {
 	glPopMatrix();
 
 };
+
 void display1(int x, int y, int w, int h) {
 
 	glViewport(x, y, w, h); //ビューポート変換
-	setGluLookAt();
+	setGluLookAt(1);
 
 	//地面
 	DrawSurface();
+	draw_map();
 
 	// 自機が死んでいたらGame Overを表示する
 	if (ship[0].Life < 1) {
@@ -181,53 +183,6 @@ void display1(int x, int y, int w, int h) {
 	
 }
 
-void display2(int x, int y, int w, int h) {
-
-	glViewport(x, y, w, h); //ビューポート変換
-	setGluLookAt(2);
-
-	//地面
-	DrawSurface();
-
-	// 自機が死んでいたらGame Overを表示する
-	if (ship[1].Life < 1) {
-		// 文字列の描画
-		glPushMatrix();
-		GLfloat matString[] = { 0.8, 0.0, 0.2, 1.0 }; //環境光と拡散光の反射率をまとめて設定
-		glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, matString);
-		glRasterPos3f( ship[1].x, 5.0f, 0.0f + ship[1].z);
-		char *str = "You Lose";
-		while (*str) {
-			glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, *str);
-			++str;
-		}
-		glPopMatrix();
-	}
-	else {
-		// 自機が生きていたら自機と敵を描画する
-		DrawMyShip2(); // 自機の描画
-		
-	}
-	if (ship[0].Life < 1) {
-		// 文字列の描画
-		glPushMatrix();
-		GLfloat matString[] = { 0.8, 0.0, 0.2, 1.0 }; //環境光と拡散光の反射率をまとめて設定
-		glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, matString);
-		glRasterPos3f(-1.0f + ship[0].x, 5.0f, 0.0f + ship[0].z);
-		char *str = "You Win";
-		while (*str) {
-			glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, *str);
-			++str;
-		}
-		glPopMatrix();
-	}
-	else {
-		DrawMyShip();
-	}
-
-	// 座標軸の描画
-	DrawAxis();
-}
 void display(void)            // 描画時に呼び出される関数（Displayコールバック関数）
 {
 	glClearColor(0.0, 0.0, 0.0, 1.0); // 画面クリア
@@ -235,7 +190,6 @@ void display(void)            // 描画時に呼び出される関数（Display�
 	glEnable(GL_DEPTH_TEST); // 隠面消去を有効
 
 	display1(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT); //プレイヤ１の画面描画
-	// display2(WINDOW_WIDTH+10, 0, WINDOW_WIDTH, WINDOW_HEIGHT);  //プレイヤ2の画面描画
 
 	glutSwapBuffers(); // 描画実行
 }

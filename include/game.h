@@ -49,6 +49,8 @@ void specialKeyUp(int key, int x, int y);
 
 void timer(int t);
 
-void setGluLookAt(int shipid =1);
+void setGluLookAt(int shipid);
+
+void draw_map(void);
 
 #endif
