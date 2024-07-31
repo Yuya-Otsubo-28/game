@@ -4,6 +4,10 @@ extern bool KeyUpON;
 extern bool KeyDownON;
 extern bool KeyLeftON;
 extern bool KeyRightON;
+extern bool KeyUpON1;
+extern bool KeyDownON1;
+extern bool KeyLeftON1;
+extern bool KeyRightON1;
 extern int MouseX;
 extern int MouseY;
 extern float SpinX;
@@ -11,8 +15,7 @@ extern float SpinY;
 extern float MoveX;
 extern float MoveZ;
 extern float Scale;
-extern MyShip myShip;
-extern Enemy enemy[MAX_ENEMY];
+extern MyShip ship[SHIP_NUM];
 
 void lightInit(void)        // 光源の初期設定(まとめて関数にしているだけ)
 {
