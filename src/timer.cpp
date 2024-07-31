@@ -37,24 +37,28 @@ void timer(int t)             // 指定時間後に呼び出される関数（Ti
 		ship[0].theta -= 1;
 	}
 
-	// 矢印キーを押し続けている間は自機を移動
-	if (KeyUpON1 == 1) {
-		ship[1].z += 0.1*cos(ship[1].theta / 180.0*PI);
-		ship[1].x += 0.1*sin(ship[1].theta / 180.0*PI);
-	}
-	if (KeyDownON1 == 1) {
-		ship[1].z -= 0.1*cos(ship[1].theta / 180.0*PI);
-		ship[1].x -= 0.1*sin(ship[1].theta / 180.0*PI);
-	}
-	if (KeyLeftON1 == 1) {
-		ship[1].theta += 1;
-	}
-	if (KeyRightON1 == 1) {
-		ship[1].theta -= 1;
+	for (int i = 1; i < ship_count + 1; i++)
+	{
+		if (!(ship[i].Life))
+			continue ;
+		if (ship[i].theta + 1 > 360)
+			ship[i].theta = ship[i].theta + 1 - 360;
+		else
+			ship[i].theta++;
+		for (int j = 0; j < MAX_SHOT; j++) {
+			  if (ship[i].myShot[j].isAlive == 0) {
+				  ship[i].myShot[j].isAlive = 1;
+				  ship[i].myShot[j].x = ship[i].x;
+				  ship[i].myShot[j].z = ship[i].z;
+				  ship[i].myShot[j].vx = sin(ship[i].theta / 180.0 * PI);
+				  ship[i].myShot[j].vz = cos(ship[i].theta / 180.0 * PI);
+				  break;
+			  }
+		  }
 	}
 
 	// 速度を足して弾を移動させる
-	for (int j = 0; j < SHIP_NUM; j++) {
+	for (int j = 0; j < ship_count + 1; j++) {
 		for (int i = 0; i < MAX_SHOT; i++) {
 			if (ship[j].myShot[i].isAlive == 1) {
 				ship[j].myShot[i].x += ship[j].myShot[i].vx; //x軸方向の速度を加算
