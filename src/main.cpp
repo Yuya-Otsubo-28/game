@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
 
 	// Windowの設定
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
-	glutInitWindowSize(WINDOW_WIDTH*2+10, WINDOW_HEIGHT);   // ウィンドウサイズの指定
+	glutInitWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);   // ウィンドウサイズの指定
 	glutCreateWindow("window");     // 表示ウィンドウ作成
 	glutReshapeFunc(reshape);       // Reshapeコールバック関数の指定
 	glutDisplayFunc(display);       // Displayコールバック関数の指定

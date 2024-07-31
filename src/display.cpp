@@ -235,7 +235,7 @@ void display(void)            // 描画時に呼び出される関数（Display�
 	glEnable(GL_DEPTH_TEST); // 隠面消去を有効
 
 	display1(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT); //プレイヤ１の画面描画
-	display2(WINDOW_WIDTH+10, 0, WINDOW_WIDTH, WINDOW_HEIGHT);  //プレイヤ2の画面描画
+	// display2(WINDOW_WIDTH+10, 0, WINDOW_WIDTH, WINDOW_HEIGHT);  //プレイヤ2の画面描画
 
 	glutSwapBuffers(); // 描画実行
 }
