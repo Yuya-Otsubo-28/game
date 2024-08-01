@@ -72,7 +72,7 @@ void DrawMyShip(void)
 
 }
 
-// 自機と弾の描画2
+// 敵機と弾の描画2
 void DrawMyShip2(int j)
 {
 	glPushMatrix();
@@ -85,13 +85,13 @@ void DrawMyShip2(int j)
 	GLfloat mat0shine[] = { 27.89743616 };//真鍮
 	glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, mat0shine);
 
-	//自機の描画
+	//敵機の描画
 	glTranslatef(ship[j].x, 0.0, ship[j].z); //X軸方向にMoveX，Y軸方向にMoveYだけ移動
 	glRotatef(ship[j].theta - 90, 0.0, 1.0, 0.0);  //Y軸周りに90度回転
 	glutSolidTeapot(1.0);            //自機はティーポット(笑)
 	glPopMatrix();
 
-	//自機の弾の描画
+	//敵機の弾の描画
 	for (int i = 0; i<MAX_SHOT; i++) {
 		if (ship[j].myShot[i].isAlive) {
 			glPushMatrix();
