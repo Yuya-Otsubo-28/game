@@ -6,7 +6,6 @@ SRCS = ./src/main.cpp \
 		./src/display.cpp \
 		./src/keyboard.cpp \
 		./src/reshape.cpp \
-		./src/specialKey.cpp \
 		./src/timer.cpp \
 		./src/lightInit.cpp \
 		./src/map.cpp

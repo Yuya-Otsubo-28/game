@@ -47,10 +47,6 @@ void lightInit(void);
 
 void reshape(int w, int h);
 
-void specialKey(int key, int x, int y);
-
-void specialKeyUp(int key, int x, int y);
-
 void timer(int t);
 
 void setGluLookAt(int shipid);

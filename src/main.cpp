@@ -68,8 +68,6 @@ int main(int argc, char *argv[])
 
 	glutKeyboardFunc(keyboard);     // 通常キーコールバック関数の指定(押したとき)
 	glutKeyboardUpFunc(keyboardUp);     // 通常キーコールバック関数の指定(押したとき)
-	glutSpecialFunc(specialKey);    // 特殊キーコールバック関数の指定(押したとき)
-	glutSpecialUpFunc(specialKeyUp);// 特殊キーコールバック関数の指定(離したとき)
 
 	glutTimerFunc(20, timer, 20);   // 定期的に呼び出される関数の指定
 
