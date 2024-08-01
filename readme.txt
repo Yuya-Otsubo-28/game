@@ -4,6 +4,8 @@
 学籍番号: 21TI019 \
 提出日：2024/08/01
 
+0. 準備の説明
+
 [ファイルの説明]
 <rootディレクトリ>
 - src/: ソースファイルが含まれているディレクトリ. コンパイル時には生成されたオブジェクトファイルもここにできる.
@@ -42,55 +44,23 @@ GLUTがインストールされていない場合は、aptなどのパッケー�
 - `re`: `fclean`を行った後に, `all`を行う.
 
 ＜実行方法＞
+`Make run`とターミナルにて入力することで実行できる.
+終了する場合は, ターミナル上でCtrl+Cもしくはwindowの右上のxボタンをクリック.
 
-`./server <port番号>`を行った後に, `./client localhost <port番号>`で実行できる.
-文字列を入力してEnter keyを入力することで, 入力した文字列を相手に送信することができる.
-`quit`を入力(もしくはCtrl+dを押下)し, 相手がプロンプトの指示に従ってEnter keyを入力するとプログラムが正常に終了する.
+1. ゲームのルール
+	ヤカン型の戦車を操縦して敵の戦車を倒していくゲーム.
+	全ての敵を倒すとゲームクリア.
+	敵もプレイヤーも相手の砲弾が一度でも自分にあたったら倒される.
+	青い場所は安全地帯となっており, 自分の砲弾を通さない代わりに敵の砲弾も防いでくれる.
 
-＜実行例＞
-```txt
-%> ./server 3000
-Connection is established.
-[tips] you can set the new name by "set-name:<new_name>"
-> hello
-> from [visiter]: yeah
-> from [taro]: my name is taro
-> set-name:taro2
-now your name is "taro2"
-> my name is taro too
-> nice to meet you
-> こんにちは
-> from [taro]: こんにちは
-> from [taro]: quit
-please press enter
-%>
-```
-```txt
-%>./client localhost 3000
-[tips] you can set the new name by "set-name:<new_name>"
-> from [visiter]: hello
-> yeah
-> set-name:taro
-now your name is "taro"
-> my name is taro
-> from [taro2]: my name is taro too
-> from [taro2]: nice to meet you
-> from [taro2]: こんにちは
-> こんにちは
-> quit
-from [taro2]:
-> %
-%>
-```
-[工夫点]
-- clientとserverで処理が異なるのはソケットを接続するなどの通信の準備段階だけであったので, 実際の送受信の処理を完全に共通化させたこと.
+2. 操作方法
+	キーボードでの操作のみを対象としている. 
+	- w, d: それぞれが前方, 後方への移動になっている.
+	- a, s: それぞれが左, 右への方向転換になっている.
+	- space: 砲弾の発射. 長押しして打ち続けることもできる.
 
-- 受信するとき, `from [user_name]`がメッセージの頭につくようにし, 誰から送信されたのかがわかるようにした.
-- `set-name:<new_name>`で表示名を変更できるようにした.
+3. 工夫点・アピールポイント
 
-[考察]
-- Makefileにて, もともとオブジェクトファイルを生成してから実行ファイルを作成する本来のMakefileの使用法に即して書いていたが, utils.cがserver, clientの両方の材料になっていたためにmakeでのコンパイルがうまくいかなかった. Makefileにて複数の生成物を作るときに, 共通のター ゲットが存在すると一工夫必要なことが分かった.
-- 送受信どちらも別のスレッドを用いており送受信の処理でどちらも待ち状態になるため, `quit`でどちらも一気に終了させることができなかった. 他スレッドからスレッドを終了させる方法があればもっときれいなプログラムになると思った.
+4. 動作環境
 
-[参考資料]
-無し%
+5. 
