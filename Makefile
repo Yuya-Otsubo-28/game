@@ -13,6 +13,9 @@ OBJS = $(SRCS:.cpp=.o)
 
 all : $(NAME)
 
+run : $(NAME)
+	./$(NAME)
+
 $(NAME) : $(OBJS)
 	g++ $(CPPFLAGS) $(INCLUDES) $(OBJS) $(LIBS) -o $(NAME)
 
