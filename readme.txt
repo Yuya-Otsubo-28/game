@@ -19,17 +19,11 @@
 - `lightInit.cpp`: 光源の初期設定が書かれたファイル. 
 - `map.cpp`: mapの描画について書かれたファイル.
 - `reshape.cpp`: windowサイズ変更の際の処理が書かれたファイル.
-- `specialKey.cpp`: 
+- `timer.cpp`: 一定時間ごとに呼び出される処理が書かれたファイル.
 
-- server.c: チャットプログラムのサーバーサイド
-- utils.c: client.c, server.cの両方で使用する関数をまとめたファイル
-
-＜ヘッダーファイル＞
-- report01.h: プログラム内で使用する関数のプロトタイプやマクロ, 構造体などを定義している
-
-＜その他のファイル＞
-- Makefile: client, serverを作成するためのMakefile
-- readme.md: このファイル
+＜includeディレクトリ＞
+- game.h: マクロや構造体、プロトタイプ宣言が書かれたファイル.
+- g_var.h: グローバル変数が書かれたファイル.
 
 [実行プログラムの説明]
 - client: チャットプログラムのクライアントサイド
